@@ -1,9 +1,7 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
-import appConfig from '../config.json';
 import React from 'react';
-import {useRouter} from 'next/router';
-
-
+import { useRouter } from 'next/router';
+import appConfig from '../config.json';
 
 function Titulo(props) {
   const Tag = props.tag || 'h1';
@@ -35,47 +33,43 @@ function Titulo(props) {
 // export default HomePage
 
 export default function PaginaInicial() {
-  //const username = 'filipesenaifirjan';
+  // const username = 'filipesenaifirjan';
   const [username, setUsername] = React.useState('filipesenaifirjan');
   const roteamento = useRouter();
 
-  
-  
-
-
   return (
     <>
-    
-    <Box
-      styleSheet={{
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        backgroundColor: appConfig.theme.colors.primary[500],
-        backgroundImage: 'url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)',
-        backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
-      }}
-    >
       <Box
         styleSheet={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexDirection: {
-            xs: 'column',
-            sm: 'row',
-          },
-          width: '100%', maxWidth: '700px',
-          borderRadius: '5px', padding: '32px', margin: '16px',
-          boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-          backgroundColor: appConfig.theme.colors.neutrals[700],
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          backgroundColor: appConfig.theme.colors.primary[500],
+          backgroundImage: 'url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)',
+          backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
         }}
       >
+        <Box
+          styleSheet={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexDirection: {
+              xs: 'column',
+              sm: 'row',
+            },
+            width: '100%', maxWidth: '700px',
+            borderRadius: '5px', padding: '32px', margin: '16px',
+            boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
+            backgroundColor: appConfig.theme.colors.neutrals[700],
+          }}
+        >
           {/* Formulário */}
           <Box
             as="form"
             onSubmit={function (infosDoEvento) {
               infosDoEvento.preventDefault();
               console.log('Alguém submeteu o form');
-              roteamento.push('/chat');
+              // roteamento.push('/chat?username=' + username);
+              roteamento.push(`/chat?username=${username}`);
               // window.location.href = '/chat';
             }}
             styleSheet={{
@@ -87,8 +81,8 @@ export default function PaginaInicial() {
             <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
               {appConfig.name}
             </Text>
-            
-        {/* <input
+
+            {/* <input
                             type="text"
                             value={username}
                             onChange={function (event) {
@@ -120,7 +114,6 @@ export default function PaginaInicial() {
                 },
               }}
             />
-
             <Button
               type='submit'
               label='Entrar'
@@ -157,8 +150,7 @@ export default function PaginaInicial() {
                 borderRadius: '50%',
                 marginBottom: '16px',
               }}
-                src={`https://github.com/${username}.png`} 
-             
+              src={`https://github.com/${username}.png`}
             />
             <Text
               variant="body4"
